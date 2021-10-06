@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
-import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ClientsModule } from '@nestjs/microservices';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { KAFKA_CLIENT_CONFIG } from 'src/config/kafka';
 import { User } from './entities/user.entity';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
@@ -9,17 +10,8 @@ import { UsersService } from './users.service';
   imports: [
     ClientsModule.register([
       {
-        name: 'USER_SERVICE',
-        transport: Transport.KAFKA,
-        options: {
-          client: {
-            clientId: 'user',
-            brokers: ['localhost:9092'],
-          },
-          consumer: {
-            groupId: 'user-consumer',
-          },
-        },
+        name: 'KAFKA_CLIENT',
+        ...KAFKA_CLIENT_CONFIG,
       },
     ]),
     TypeOrmModule.forFeature([User]),
