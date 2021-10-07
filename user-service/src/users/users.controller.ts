@@ -10,8 +10,8 @@ export class UsersController {
     private readonly usersService: UsersService,
   ) {}
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    const user = this.usersService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto) {
+    const user = await this.usersService.create(createUserDto);
 
     this.kafkaClient.emit('user_created', {
       user,
