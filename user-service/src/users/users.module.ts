@@ -6,8 +6,10 @@ import { User } from './entities/user.entity';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
+// https://github.com/nestjs/nest/blob/master/sample/03-microservices/src/math/math.module.ts
 @Module({
   imports: [
+    // allows publishing events
     ClientsModule.register([
       {
         name: 'KAFKA_CLIENT',

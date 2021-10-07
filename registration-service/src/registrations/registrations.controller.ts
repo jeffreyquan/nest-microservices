@@ -9,6 +9,7 @@ export class RegistrationsController {
 
   @EventPattern('user_created')
   async registerUser(data: Record<string, unknown>) {
+    console.log(data.value);
     this.kafkaClient.emit('user_registered', {
       registrationId: 'abcdef',
     });
