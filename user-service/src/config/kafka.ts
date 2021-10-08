@@ -11,3 +11,8 @@ export const KAFKA_CLIENT_CONFIG: KafkaOptions = {
     },
   },
 };
+
+export const KAFKA_TOPICS = {
+  USER_REGISTRATION_PENDING: 'user.registration.pending',
+  USER_REGISTRATION_FULFILLED: 'user.registration.fulfilled',
+};
