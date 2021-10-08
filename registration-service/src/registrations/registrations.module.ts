@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule } from '@nestjs/microservices';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { KAFKA_CLIENT_CONFIG } from 'src/config/kafka';
+import { Registration } from './entities/registration.entity';
 import { RegistrationsController } from './registrations.controller';
 import { RegistrationsService } from './registrations.service';
 
@@ -14,6 +16,7 @@ import { RegistrationsService } from './registrations.service';
         ...KAFKA_CLIENT_CONFIG,
       },
     ]),
+    TypeOrmModule.forFeature([Registration]),
   ],
   controllers: [RegistrationsController],
   providers: [RegistrationsService],
